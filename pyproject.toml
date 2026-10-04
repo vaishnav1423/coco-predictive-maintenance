@@ -1,0 +1,14 @@
+[project]
+name = "coco-predictive-maintenance"
+version = "0.1.0"
+description = "Predictive Maintenance on Snowflake - Industrial IoT sensor data, ML models, and dashboards"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "pandas>=1.5.0,<3",
+    "snowflake-ml-python>=1.5.0",
+    "snowflake-snowpark-python",
+    "scikit-learn",
+    "matplotlib",
+    "seaborn",
+]

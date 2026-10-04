@@ -1,0 +1,31 @@
+asset_id,asset_name,asset_type,plant,line,manufacturer,install_date,criticality,rated_rpm,baseline_vibration_mm_s,vib_alert_mm_s,vib_alarm_mm_s,baseline_temp_c,temp_alert_c,temp_alarm_c,baseline_current_a,ideal_cycle_seconds,downtime_cost_per_hour_inr
+AST-001,Cnc Machine 01,CNC_MACHINE,Chennai,Line-3,ABB,2025-03-09,B,3000,1.94,4.27,5.82,56.5,71.5,81.5,23.6,40.5,60000
+AST-002,Cnc Machine 02,CNC_MACHINE,Aurangabad,Line-1,Haas,2023-05-10,C,3000,1.91,4.2,5.73,54.8,69.8,79.8,21.0,42.8,25000
+AST-003,Cnc Machine 03,CNC_MACHINE,Pune,Line-2,Grundfos,2019-08-17,B,3000,1.8,3.96,5.4,55.3,70.3,80.3,22.5,49.4,60000
+AST-004,Cnc Machine 04,CNC_MACHINE,Chennai,Line-3,Siemens,2025-04-09,A,3000,1.68,3.7,5.04,55.6,70.6,80.6,20.0,45.1,120000
+AST-005,Cnc Machine 05,CNC_MACHINE,Aurangabad,Line-2,Bosch Rexroth,2023-08-18,B,3000,1.95,4.29,5.85,55.7,70.7,80.7,20.9,40.6,60000
+AST-006,Cnc Machine 06,CNC_MACHINE,Pune,Line-2,Crompton,2022-11-12,A,3000,1.87,4.11,5.61,53.4,68.4,78.4,19.8,48.0,120000
+AST-007,Pump 01,PUMP,Chennai,Line-1,Bosch Rexroth,2018-08-25,A,1450,2.1,4.62,6.3,49.8,64.8,74.8,15.4,5.2,120000
+AST-008,Pump 02,PUMP,Aurangabad,Line-3,Bosch Rexroth,2019-02-26,A,1450,2.22,4.88,6.66,48.0,63.0,73.0,14.6,5.1,120000
+AST-009,Pump 03,PUMP,Pune,Line-1,ABB,2022-10-10,A,1450,2.15,4.73,6.45,47.2,62.2,72.2,14.6,5.5,120000
+AST-010,Pump 04,PUMP,Chennai,Line-3,Bosch Rexroth,2020-08-05,B,1450,2.25,4.95,6.75,48.7,63.7,73.7,14.0,4.9,60000
+AST-011,Pump 05,PUMP,Aurangabad,Line-2,Grundfos,2018-07-25,A,1450,2.16,4.75,6.48,46.1,61.1,71.1,15.5,4.8,120000
+AST-012,Pump 06,PUMP,Pune,Line-1,Haas,2019-05-08,C,1450,2.27,4.99,6.81,46.2,61.2,71.2,16.3,5.4,25000
+AST-013,Compressor 01,COMPRESSOR,Chennai,Line-3,Grundfos,2023-10-13,B,1800,2.6,5.72,7.8,67.8,82.8,92.8,37.4,10.8,60000
+AST-014,Compressor 02,COMPRESSOR,Aurangabad,Line-2,Grundfos,2022-07-23,B,1800,2.84,6.25,8.52,69.1,84.1,94.1,37.9,9.1,60000
+AST-015,Compressor 03,COMPRESSOR,Pune,Line-2,Kirloskar,2022-04-17,C,1800,2.78,6.12,8.34,70.3,85.3,95.3,36.2,9.7,25000
+AST-016,Compressor 04,COMPRESSOR,Chennai,Line-3,Siemens,2020-09-25,A,1800,2.59,5.7,7.77,73.3,88.3,98.3,39.4,10.0,120000
+AST-017,Compressor 05,COMPRESSOR,Aurangabad,Line-1,Crompton,2019-03-18,C,1800,2.71,5.96,8.13,70.6,85.6,95.6,40.2,10.5,25000
+AST-018,Motor 01,MOTOR,Pune,Line-2,Kirloskar,2025-07-23,C,1500,1.4,3.08,4.2,62.6,77.6,87.6,29.4,8.5,25000
+AST-019,Motor 02,MOTOR,Chennai,Line-3,Siemens,2019-03-12,A,1500,1.48,3.26,4.44,61.9,76.9,86.9,29.6,8.0,120000
+AST-020,Motor 03,MOTOR,Aurangabad,Line-2,Grundfos,2022-11-29,B,1500,1.42,3.12,4.26,58.2,73.2,83.2,26.2,7.8,60000
+AST-021,Motor 04,MOTOR,Pune,Line-1,Kirloskar,2024-12-07,C,1500,1.52,3.34,4.56,59.0,74.0,84.0,27.7,8.8,25000
+AST-022,Motor 05,MOTOR,Chennai,Line-3,Haas,2020-02-08,B,1500,1.51,3.32,4.53,62.4,77.4,87.4,28.5,7.9,60000
+AST-023,Motor 06,MOTOR,Aurangabad,Line-1,Siemens,2023-10-06,C,1500,1.47,3.23,4.41,62.5,77.5,87.5,28.1,8.7,25000
+AST-024,Motor 07,MOTOR,Pune,Line-2,Kirloskar,2020-04-17,A,1500,1.59,3.5,4.77,61.1,76.1,86.1,28.7,8.8,120000
+AST-025,Conveyor 01,CONVEYOR,Chennai,Line-1,Siemens,2022-02-15,B,900,1.18,2.6,3.54,38.8,53.8,63.8,10.8,6.4,60000
+AST-026,Conveyor 02,CONVEYOR,Aurangabad,Line-1,ABB,2021-03-14,A,900,1.22,2.68,3.66,39.9,54.9,64.9,10.3,5.8,120000
+AST-027,Conveyor 03,CONVEYOR,Pune,Line-2,Crompton,2024-12-05,C,900,1.19,2.62,3.57,40.5,55.5,65.5,9.1,5.9,25000
+AST-028,Conveyor 04,CONVEYOR,Chennai,Line-1,Haas,2024-10-04,C,900,1.28,2.82,3.84,40.9,55.9,65.9,10.8,6.4,25000
+AST-029,Conveyor 05,CONVEYOR,Aurangabad,Line-1,Siemens,2024-05-03,C,900,1.21,2.66,3.63,41.7,56.7,66.7,9.0,5.7,25000
+AST-030,Conveyor 06,CONVEYOR,Pune,Line-1,ABB,2025-04-22,A,900,1.13,2.49,3.39,40.3,55.3,65.3,10.2,5.6,120000
