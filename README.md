@@ -74,8 +74,8 @@ Each mode produces a distinct multi-channel degradation signature over 5-13 days
 | 1 - Data Loading | **Done** | Warehouse, DB, schemas, 6 tables, CSV loading |
 | 2 - Feature Engineering | **Done** | 3 dynamic tables + 1 view in ANALYTICS schema |
 | 3 - ML Model | **Done** | Random Forest failure detector (F1=0.64, 80% degradation detection) |
-| 4 - Cortex Search & Agent | Planned | Maintenance doc search + conversational agent |
-| 5 - Dashboard & Alerting | Planned | Streamlit-in-Snowflake + Snowflake Alerts |
+| 4 - Cortex Search & Agent | **Done** | Maintenance doc search + conversational agent |
+| 5 - Dashboard & Alerting | **Done** | Streamlit dashboard + 3 Snowflake Alerts |
 
 ## SQL Files
 
@@ -102,6 +102,46 @@ All Snowflake SQL is in the `sql/` directory, organized by phase:
 |---|---|
 | `train_model.py` | Training script: data loading, labeling, RF training, validation |
 | `sql/phase3_model_inference.sql` | Batch inference and asset risk scoring SQL |
+
+### Phase 4 - Cortex Search & Agent
+| File | Description |
+|---|---|
+| `sql/phase4_cortex_search.sql` | Cortex Search Service over maintenance docs |
+| `sql/phase4_cortex_agent.sql` | Cortex Agent with search tool for technician assistance |
+
+### Phase 5 - Dashboard & Alerting
+| File | Description |
+|---|---|
+| `streamlit_app.py` | 4-page Streamlit dashboard (health, OEE, costs, sensor deep dive) |
+| `sql/phase5_alerts.sql` | 3 Snowflake Alerts + ALERT_LOG table |
+
+## Dashboard & Alerting (Phase 5)
+
+**Streamlit Dashboard** (`streamlit_app.py`) — 4 pages:
+1. **Asset Health** — KPI cards, color-coded status table, baseline deviation chart
+2. **OEE Dashboard** — daily trend, A/P/Q breakdown, by plant and asset type
+3. **Maintenance Costs** — corrective vs preventive split, top 10 costliest assets, MTBF
+4. **Sensor Deep Dive** — per-asset time-series (vibration, temperature, current) with alert/alarm threshold lines
+
+Run: `uv run streamlit run streamlit_app.py`
+
+**Snowflake Alerts** (every 30 min):
+| Alert | Condition |
+|---|---|
+| `PDM_VIB_ALARM_ALERT` | Any asset vibration exceeds alarm threshold |
+| `PDM_TEMP_ALARM_ALERT` | Any asset temperature exceeds alarm threshold |
+| `PDM_SUSTAINED_BREACH_ALERT` | Any asset has 10+ threshold breaches in trailing 24h |
+
+All alerts log to `ANALYTICS.ALERT_LOG` for audit.
+
+## Cortex Search & Agent (Phase 4)
+
+**Cortex Search Service**: `PDM_DOCS_SEARCH` — hybrid (vector + keyword) search over 36 maintenance doc sections, with filtering on `DOC_TYPE` and `APPLIES_TO`. Target lag = 1 day.
+
+**Cortex Agent**: `PDM_MAINTENANCE_AGENT` — conversational assistant for plant technicians, powered by `claude-sonnet-4-6`. Searches maintenance manuals (5 failure-mode guides), SOPs (alert triage, work orders), and OEE reference. Cites doc IDs, recommends specific actions, references thresholds, and suggests spare parts.
+
+Example query: *"Vibration on CNC Machine 01 has been rising for 3 days. What should I do?"*
+The agent searches relevant docs, performs differential diagnosis (bearing wear vs imbalance), cites MNT-001/MNT-002, and gives step-by-step actions with parts and downtime estimates.
 
 ## ML Model (Phase 3)
 

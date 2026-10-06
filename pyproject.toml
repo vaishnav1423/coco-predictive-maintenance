@@ -11,4 +11,6 @@ dependencies = [
     "scikit-learn",
     "matplotlib",
     "seaborn",
+    "streamlit",
+    "plotly",
 ]

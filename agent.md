@@ -64,8 +64,8 @@ WORK_ORDERS.PART_ID --> SPARE_PARTS.PART_ID
 | 1 - Data Loading | Done | Warehouse, DB, schemas, tables, CSV loading |
 | 2 - Feature Engineering | Done | Dynamic tables with rolling stats, OEE, health summary |
 | 3 - ML Model | Done | Random Forest failure detector (F1=0.64, 80% degradation detection) |
-| 4 - Cortex Search & Agent | Planned | Maintenance docs search + conversational agent |
-| 5 - Dashboard & Alerting | Planned | Streamlit-in-Snowflake app + Snowflake Alerts |
+| 4 - Cortex Search & Agent | Done | Cortex Search + conversational agent for technicians |
+| 5 - Dashboard & Alerting | Done | Streamlit dashboard (4 pages) + 3 Snowflake Alerts |
 
 ## ML Model (Phase 3)
 
@@ -78,6 +78,24 @@ WORK_ORDERS.PART_ID --> SPARE_PARTS.PART_ID
 - **False alarm rejection**: 67% (4/6 correctly ignored)
 - **Top features**: VIB_BASELINE_DEV_PCT (12%), TEMP_BASELINE_DEV_PCT (8%), TEMP_AVG_7D (8%)
 - **Artifacts**: `model_artifacts/failure_detector.pkl`, feature_importance.png, confusion_matrix.png
+
+## Cortex Search & Agent (Phase 4)
+
+- **Search Service**: `PREDICT_MAINT_DB.ANALYTICS.PDM_DOCS_SEARCH` — hybrid search over 36 maintenance doc sections
+  - Search column: `TEXT` | Attributes: `DOC_TYPE`, `APPLIES_TO`, `TITLE`, `SECTION_TITLE`
+  - Target lag: 1 day
+- **Agent**: `PREDICT_MAINT_DB.ANALYTICS.PDM_MAINTENANCE_AGENT` — technician assistant (claude-sonnet-4-6)
+  - Tool: `maintenance_docs` (cortex_search) pointing to PDM_DOCS_SEARCH
+  - Cites doc IDs, gives differential diagnosis, recommends actions with parts/downtime
+
+## Dashboard & Alerting (Phase 5)
+
+- **Dashboard**: `streamlit_app.py` — 4 pages (Asset Health, OEE, Maintenance Costs, Sensor Deep Dive)
+  - Run: `uv run streamlit run streamlit_app.py`
+- **Alerts** (every 30 min, log to `ANALYTICS.ALERT_LOG`):
+  - `PDM_VIB_ALARM_ALERT` — vibration exceeds alarm threshold
+  - `PDM_TEMP_ALARM_ALERT` — temperature exceeds alarm threshold
+  - `PDM_SUSTAINED_BREACH_ALERT` — 10+ breaches in trailing 24h
 
 ## SQL Files
 
@@ -92,6 +110,9 @@ All SQL is in the `sql/` directory, organized by phase:
 - `phase2_maintenance_cost.sql` - MAINTENANCE_COST_SUMMARY view
 - `phase2_validate.sql` - Validation queries for Phase 2
 - `phase3_model_inference.sql` - Batch inference and asset risk scoring
+- `phase4_cortex_search.sql` - Cortex Search Service over maintenance docs
+- `phase4_cortex_agent.sql` - Cortex Agent for technician assistance
+- `phase5_alerts.sql` - 3 Snowflake Alerts + ALERT_LOG table
 
 ## Naming Conventions
 
